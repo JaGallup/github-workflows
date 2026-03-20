@@ -72,7 +72,7 @@ permissions:
 jobs:
   terraform-quality-checks:
     name: '✅ Terraform Quality checks'
-    uses: aproorg/github-workflows/.github/workflows/terraform-quality-checks.yml@main
+    uses: JaGallup/github-workflows/.github/workflows/terraform-quality-checks.yml@main
     with:
       terraform_version: ${{ inputs.terraform_version }}
 
@@ -87,7 +87,7 @@ jobs:
 
       - name: 🏷️ Get next version
         id: get-next-version
-        uses: aproorg/github-workflows/.github/actions/get-next-version@main
+        uses: JaGallup/github-workflows/.github/actions/get-next-version@main
         with:
           github_token: ${{ secrets.token }}
 
@@ -99,7 +99,7 @@ jobs:
     steps:
       - name: 🤝 Unify service inputs
         id: unify-services
-        uses: aproorg/github-workflows/.github/actions/unify-services@main
+        uses: JaGallup/github-workflows/.github/actions/unify-services@main
         with:
           service_name: ${{ inputs.service_name }}
           services: ${{ inputs.services }}
@@ -117,7 +117,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: '🚀 Apply shared'
-      uses: aproorg/github-workflows/.github/actions/apply-shared@main
+      uses: JaGallup/github-workflows/.github/actions/apply-shared@main
       with:
         AWS_REGION: ${{ inputs.aws_region }}
         AWS_ECR_DEPLOYMENT_ROLE: ${{ inputs.github_ci_ecr_role_arn }}
@@ -139,7 +139,7 @@ jobs:
         fetch-tags: ${{ inputs.build_checkout_fetch_tags }}
 
     - name: '️️️🏗️ Build and push image all images'
-      uses: aproorg/github-workflows/.github/actions/build-and-push-image@main
+      uses: JaGallup/github-workflows/.github/actions/build-and-push-image@main
       with:
         AWS_REGION: ${{ inputs.aws_region }}
         AWS_ROLE_ARN: ${{ inputs.github_ci_ecr_role_arn }}
@@ -166,7 +166,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: '🚀 Deploy to dev'
-      uses: aproorg/github-workflows/.github/actions/deploy-ecs-service@main
+      uses: JaGallup/github-workflows/.github/actions/deploy-ecs-service@main
       with:
         AWS_REGION: ${{ inputs.aws_region }}
         ENVIRONMENT: dev
