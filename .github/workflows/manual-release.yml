@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
       - name: 🏷️ Get next version
         id: get-next-version
-        uses: JaGallup/github-workflows/.github/actions/get-next-version@main
+        uses: ./.github/actions/get-next-version
         with:
           github_token: ${{ secrets.token }}
 
@@ -33,6 +33,6 @@ jobs:
           fetch-depth: 0
 
       - name: ⏯️ Publish new release
-        uses: JaGallup/github-workflows/.github/actions/github-release@main
+        uses: ./.github/actions/github-release
         with:
           github_token: ${{ secrets.token }}
